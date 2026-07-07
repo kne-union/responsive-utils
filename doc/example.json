@@ -1,0 +1,133 @@
+{
+  "isFull": true,
+  "list": [
+    {
+      "title": "快速入门",
+      "description": "断点 token 与核心 Hooks 一览，展示视口模式下的移动端判定与断点状态",
+      "code": "./base.js",
+      "scope": [
+        {
+          "name": "_ResponsiveUtils",
+          "packageName": "@kne/current-lib_responsive-utils",
+          "importStatement": "import * as _ResponsiveUtils from \"@kne/responsive-utils\""
+        },
+        {
+          "name": "antd",
+          "packageName": "antd"
+        }
+      ]
+    },
+    {
+      "title": "ResponsiveProvider",
+      "description": "视口模式与容器模式对比，演示 boundaryRef / scrollRef 自定义弹窗边界与滚动容器",
+      "code": "./responsive-provider.js",
+      "scope": [
+        {
+          "name": "_ResponsiveUtils",
+          "packageName": "@kne/current-lib_responsive-utils",
+          "importStatement": "import * as _ResponsiveUtils from \"@kne/responsive-utils\""
+        },
+        {
+          "name": "antd",
+          "packageName": "antd"
+        }
+      ]
+    },
+    {
+      "title": "useIsMobile",
+      "description": "监听视口或容器宽度，驱动布局切换与条件渲染",
+      "code": "./use-is-mobile.js",
+      "scope": [
+        {
+          "name": "_ResponsiveUtils",
+          "packageName": "@kne/current-lib_responsive-utils",
+          "importStatement": "import * as _ResponsiveUtils from \"@kne/responsive-utils\""
+        },
+        {
+          "name": "antd",
+          "packageName": "antd"
+        }
+      ]
+    },
+    {
+      "title": "useBreakpoint",
+      "description": "返回 xs~xxl 各断点命中状态，用于栅格、侧栏、表格列显隐",
+      "code": "./use-breakpoint.js",
+      "scope": [
+        {
+          "name": "_ResponsiveUtils",
+          "packageName": "@kne/current-lib_responsive-utils",
+          "importStatement": "import * as _ResponsiveUtils from \"@kne/responsive-utils\""
+        },
+        {
+          "name": "antd",
+          "packageName": "antd"
+        }
+      ]
+    },
+    {
+      "title": "useMediaQuery",
+      "description": "订阅任意 media query，支持容器模式下的 max-width 映射",
+      "code": "./use-media-query.js",
+      "scope": [
+        {
+          "name": "_ResponsiveUtils",
+          "packageName": "@kne/current-lib_responsive-utils",
+          "importStatement": "import * as _ResponsiveUtils from \"@kne/responsive-utils\""
+        },
+        {
+          "name": "antd",
+          "packageName": "antd"
+        }
+      ]
+    },
+    {
+      "title": "usePopupContainer",
+      "description": "为 antd 浮层组件提供 getPopupContainer，避免 overflow 裁剪",
+      "code": "./use-popup-container.js",
+      "scope": [
+        {
+          "name": "_ResponsiveUtils",
+          "packageName": "@kne/current-lib_responsive-utils",
+          "importStatement": "import * as _ResponsiveUtils from \"@kne/responsive-utils\""
+        },
+        {
+          "name": "antd",
+          "packageName": "antd"
+        }
+      ]
+    },
+    {
+      "title": "useScrollElement",
+      "description": "获取滚动参照元素，用于锚点定位与滚动监听",
+      "code": "./use-scroll-element.js",
+      "scope": [
+        {
+          "name": "_ResponsiveUtils",
+          "packageName": "@kne/current-lib_responsive-utils",
+          "importStatement": "import * as _ResponsiveUtils from \"@kne/responsive-utils\""
+        },
+        {
+          "name": "antd",
+          "packageName": "antd"
+        }
+      ]
+    },
+    {
+      "title": "DOM 工具",
+      "description": "findScrollParent、resolveBoundaryElement、resolveScrollElement 等底层解析",
+      "code": "./dom-utils.js",
+      "scope": [
+        {
+          "name": "_ResponsiveUtils",
+          "packageName": "@kne/current-lib_responsive-utils",
+          "importStatement": "import * as _ResponsiveUtils from \"@kne/responsive-utils\""
+        },
+        {
+          "name": "antd",
+          "packageName": "antd"
+        }
+      ]
+    }
+  ]
+}
