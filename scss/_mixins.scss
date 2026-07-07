@@ -35,7 +35,7 @@
 }
 
 @mixin container-down($name) {
-  @container #{tokens.$responsive-container-name} (max-width: breakpoint($name)) {
+  @container #{tokens.$responsive-container-name} (max-width: #{breakpoint($name)}) {
     @content;
   }
 }
