@@ -31,4 +31,12 @@ describe('breakpoints', () => {
     expect(content).toContain('$responsive-boundary-class: kne-responsive-boundary;');
     expect(content).toContain('$responsive-scroll-class: kne-responsive-scroll;');
   });
+
+  it('should compile container-down mixin with resolved breakpoint width', () => {
+    const sass = require('sass');
+    const mixinsPath = path.join(__dirname, '../../../scss');
+    const result = sass.compileString("@use 'mixins' as resp;\n@include resp.container-down(md) { .box { color: green; } }", { loadPaths: [mixinsPath] });
+    expect(result.css).toContain('@container kne-responsive (max-width: 768px)');
+    expect(result.css).not.toContain('breakpoint');
+  });
 });
