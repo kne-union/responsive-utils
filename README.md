@@ -2,7 +2,7 @@
 
 ### 描述
 
-Unified responsive breakpoints, hooks, popup boundary and scroll context for KNE projects
+Unified responsive breakpoints, hooks, popup boundary and scroll context for KNE projects.
 
 ### 安装
 

@@ -1,7 +1,7 @@
 {
   "name": "@kne/responsive-utils",
   "version": "0.1.0",
-  "description": "Unified responsive breakpoints, hooks, popup boundary and scroll context for KNE projects",
+  "description": "Unified responsive breakpoints, hooks, popup boundary and scroll context for KNE projects.",
   "syntax": {
     "esmodules": true
   },
