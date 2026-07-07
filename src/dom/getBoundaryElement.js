@@ -1,8 +1,10 @@
+import { findResponsiveBoundary } from './findResponsiveTarget';
+
 const getDefaultBoundaryElement = () => {
   if (typeof document === 'undefined') {
     return null;
   }
-  return document.body || null;
+  return findResponsiveBoundary() || document.body || null;
 };
 
 const resolveBoundaryElement = resolver => {

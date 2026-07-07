@@ -5,6 +5,11 @@
   @return map.get(tokens.$breakpoints, $name);
 }
 
+@mixin responsive-container {
+  container-type: inline-size;
+  container-name: tokens.$responsive-container-name;
+}
+
 @mixin down($name) {
   @media (max-width: breakpoint($name)) {
     @content;
@@ -29,8 +34,14 @@
   }
 }
 
+@mixin container-down($name) {
+  @container #{tokens.$responsive-container-name} (max-width: breakpoint($name)) {
+    @content;
+  }
+}
+
 @mixin mobile-container {
-  @container (max-width: tokens.$breakpoint-md) {
+  @include container-down(md) {
     @content;
   }
 }

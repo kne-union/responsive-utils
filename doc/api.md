@@ -13,12 +13,57 @@
 
 ### SCSS
 
+容器查询使用统一名称 `kne-responsive`（`$responsive-container-name`），业务方无需硬编码。
+
+**宿主元素**（如 example-driver 的 `.example-driver-preview-content`）：
+
 ```scss
 @use '@kne/responsive-utils/scss' as resp;
 
-@include resp.mobile { ... }
+.preview-host {
+  @include resp.responsive-container;
+}
+```
+
+**子元素样式**：
+
+```scss
 @include resp.mobile-container { ... }
-@include resp.down(md) { ... }
+@include resp.container-down(md) { ... }
+@include resp.mobile { ... } // 视口 @media
+```
+
+### 响应式目标类名
+
+| 名称 | 类名 | 用途 |
+|------|------|------|
+| `RESPONSIVE_CONTAINER_CLASS` | `kne-responsive-container` | 容器查询宿主（配合 `responsive-container` mixin） |
+| `RESPONSIVE_BOUNDARY_CLASS` | `kne-responsive-boundary` | 弹层挂载边界（`getPopupContainer` / `usePopupContainer`） |
+| `RESPONSIVE_SCROLL_CLASS` | `kne-responsive-scroll` | 滚动参照容器（`useScrollElement` / Affix / BackTop） |
+
+DOM 查找：`findResponsiveBoundary(anchor)`、`findResponsiveScroll(anchor)`。无自定义注入时 Provider 默认按类名解析，再回退 `body` / `documentElement`。
+
+```jsx
+<div className={RESPONSIVE_CONTAINER_CLASS} />
+<div className={RESPONSIVE_BOUNDARY_CLASS}>{children}</div>
+<div className={RESPONSIVE_SCROLL_CLASS}>{children}</div>
+```
+
+### 容器查询（JS / 内联样式）
+
+| 名称 | 说明 |
+|------|------|
+| `containerMobileBlock(rules)` | 生成移动端 `@container` 规则块，无需知道容器名 |
+| `containerDownBlock('sm', rules)` | 按断点 key 生成容器查询块 |
+| `RESPONSIVE_CONTAINER_NAME` | 高级场景用，一般不必直接使用 |
+
+```js
+import { containerMobileBlock } from '@kne/responsive-utils';
+
+const css = `
+  .box { background: blue; }
+  ${containerMobileBlock('.box { background: green; }')}
+`;
 ```
 
 ### ResponsiveProvider

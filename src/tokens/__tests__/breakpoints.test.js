@@ -27,5 +27,8 @@ describe('breakpoints', () => {
     const content = fs.readFileSync(tokensPath, 'utf8');
     expect(content).toContain('$breakpoint-md: 768px;');
     expect(content).toContain('$breakpoint-mobile: 768px;');
+    expect(content).toContain('$responsive-container-name: kne-responsive;');
+    expect(content).toContain('$responsive-boundary-class: kne-responsive-boundary;');
+    expect(content).toContain('$responsive-scroll-class: kne-responsive-scroll;');
   });
 });

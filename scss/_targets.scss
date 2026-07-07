@@ -1,0 +1,9 @@
+@use 'tokens' as tokens;
+
+.#{tokens.$responsive-boundary-class} {
+  position: relative;
+}
+
+.#{tokens.$responsive-scroll-class} {
+  overflow: auto;
+}
