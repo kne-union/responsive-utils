@@ -31,6 +31,24 @@ describe('createExampleDriverResponsiveProps', () => {
     expect(props.getBoundaryElement()).toBe(runner);
   });
 
+  it('should resolve device scroll as boundary in framed mode', () => {
+    const deviceScroll = document.createElement('div');
+    deviceScroll.className = `example-driver-device-scroll ${RESPONSIVE_BOUNDARY_CLASS}`;
+    const runner = document.createElement('div');
+    runner.className = `example-driver-runner ${RESPONSIVE_BOUNDARY_CLASS}`;
+    deviceScroll.appendChild(runner);
+    document.body.appendChild(deviceScroll);
+
+    const props = createExampleDriverResponsiveProps({
+      runnerRef: { current: runner },
+      hasDeviceFrame: true,
+      containerWidth: 390
+    });
+    expect(props.getBoundaryElement()).toBe(deviceScroll);
+
+    document.body.removeChild(deviceScroll);
+  });
+
   it('should resolve scroll element by responsive class', () => {
     const scroll = document.createElement('div');
     scroll.className = RESPONSIVE_SCROLL_CLASS;
