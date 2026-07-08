@@ -1,6 +1,6 @@
 {
   "name": "@kne/responsive-utils",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "description": "Unified responsive breakpoints, hooks, popup boundary and scroll context for KNE projects.",
   "syntax": {
     "esmodules": true
@@ -27,11 +27,7 @@
     },
     "./scss": "./scss/index.scss",
     "./scss/viewport": "./scss/_viewport.scss",
-    "./scss/*": "./scss/*",
-    "./integrations/example-driver": {
-      "import": "./dist/integrations/index/responsive-utils.modern.js",
-      "require": "./dist/integrations/index/responsive-utils.js"
-    }
+    "./scss/*": "./scss/*"
   },
   "scripts": {
     "init": "husky && npm run init-example",
@@ -43,7 +39,7 @@
     "build:md": "npx @kne/md-doc",
     "start:md": "npx @kne/md-doc --watch",
     "build:lib-main": "microbundle --no-compress --format modern,cjs --jsxImportSource react --jsx React.createElement --jsxFragment React.Fragment",
-    "build:lib-entries": "microbundle src/react/index.js -o dist/react/index --no-compress --format modern,cjs --jsxImportSource react --jsx React.createElement --jsxFragment React.Fragment && microbundle src/tokens/index.js -o dist/tokens/index --no-compress --format modern,cjs && microbundle src/dom/index.js -o dist/dom/index --no-compress --format modern,cjs && microbundle src/integrations/index.js -o dist/integrations/index --no-compress --format modern,cjs --jsxImportSource react --jsx React.createElement --jsxFragment React.Fragment",
+    "build:lib-entries": "microbundle src/react/index.js -o dist/react/index --no-compress --format modern,cjs --jsxImportSource react --jsx React.createElement --jsxFragment React.Fragment && microbundle src/tokens/index.js -o dist/tokens/index --no-compress --format modern,cjs && microbundle src/dom/index.js -o dist/dom/index --no-compress --format modern,cjs",
     "build:lib": "run-s build:lib-main build:lib-entries patch:cjs-interop",
     "patch:cjs-interop": "node scripts/patch-cjs-interop.js",
     "start:lib": "microbundle watch --no-compress --format modern,cjs --jsxImportSource react --jsx React.createElement --jsxFragment React.Fragment",

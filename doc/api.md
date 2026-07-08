@@ -142,24 +142,3 @@ const css = `
 | `resolveScrollElement` | `(scrollRef?, anchor?)` | `HTMLElement` | 解析滚动元素，默认文档滚动根 |
 | `getDefaultScrollElement` | - | `HTMLElement` | 默认滚动根 |
 | `getDefaultBoundaryElement` | - | `HTMLElement` | 默认 `document.body` |
-
-### ExampleDriverResponsiveProvider
-
-对接 `@kne/example-driver` / `modules-dev` 的响应式 Provider。
-
-#### 属性
-
-| 属性 | 类型 | 默认值 | 描述 |
-|------|------|--------|------|
-| `runnerRef` | `RefObject<HTMLElement>` | - | example-driver 运行区域 ref |
-| `simpleBarRef` | `RefObject` | - | 手机框 SimpleBar ref |
-| `hasDeviceFrame` | `boolean` | `false` | 是否处于设备预览框 |
-| `containerWidth` | `number` | - | 设备预览宽度，触发 `container` 模式 |
-
-#### 辅助导出
-
-| 名称 | 描述 |
-|------|------|
-| `createExampleDriverResponsiveProps` | 生成 `ResponsiveProvider` props |
-| `EXAMPLE_DRIVER_RUNNER_CLASS` | runner 容器 class 名 |
-| `EXAMPLE_DRIVER_PREVIEW_CLASS` | 预览区域 class 名 |
