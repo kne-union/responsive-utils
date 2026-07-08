@@ -14,6 +14,7 @@ export const findResponsiveBoundary = anchor => {
     if (closest) {
       return closest;
     }
+    return null;
   }
   return document.querySelector(toSelector(RESPONSIVE_BOUNDARY_CLASS));
 };
@@ -30,6 +31,7 @@ export const findResponsiveScroll = anchor => {
     if (closest) {
       return closest;
     }
+    return null;
   }
   return document.querySelector(toSelector(RESPONSIVE_SCROLL_CLASS));
 };
