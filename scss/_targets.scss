@@ -2,6 +2,8 @@
 
 .#{tokens.$responsive-boundary-class} {
   position: relative;
+  // Establish a containing block so position:fixed overlays stay inside the boundary.
+  transform: translateZ(0);
 }
 
 .#{tokens.$responsive-scroll-class} {
