@@ -23,6 +23,10 @@ const lines = [
     '$responsive-container-class: kne-responsive-container;',
     '$responsive-boundary-class: kne-responsive-boundary;',
     '$responsive-scroll-class: kne-responsive-scroll;',
+    '$viewport-width-var: --kne-viewport-width;',
+    '$viewport-height-var: --kne-viewport-height;',
+    '$viewport-inline-size-var: --kne-viewport-inline-size;',
+    '$viewport-block-size-var: --kne-viewport-block-size;',
     ''
 ];
 

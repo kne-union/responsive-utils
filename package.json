@@ -1,6 +1,6 @@
 {
   "name": "@kne/responsive-utils",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Unified responsive breakpoints, hooks, popup boundary and scroll context for KNE projects.",
   "syntax": {
     "esmodules": true
@@ -26,6 +26,7 @@
       "require": "./dist/dom/index/responsive-utils.js"
     },
     "./scss": "./scss/index.scss",
+    "./scss/viewport": "./scss/_viewport.scss",
     "./scss/*": "./scss/*",
     "./integrations/example-driver": {
       "import": "./dist/integrations/index/responsive-utils.modern.js",

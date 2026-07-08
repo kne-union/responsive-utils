@@ -1,0 +1,16 @@
+@use 'tokens' as tokens;
+
+@mixin viewport-vars {
+  --kne-viewport-width: 100vw;
+  --kne-viewport-height: 100vh;
+  --kne-viewport-inline-size: 100vw;
+  --kne-viewport-block-size: 100vh;
+}
+
+:root {
+  @include viewport-vars;
+}
+
+.#{tokens.$responsive-boundary-class} {
+  @include viewport-vars;
+}
