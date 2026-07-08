@@ -9,6 +9,17 @@ describe('createExampleDriverResponsiveProps', () => {
     });
     expect(props.mode).toBe('container');
     expect(props.containerWidth).toBe(390);
+    expect(props.containerHeight).toBeUndefined();
+  });
+
+  it('should pass container height in container mode', () => {
+    const props = createExampleDriverResponsiveProps({
+      hasDeviceFrame: true,
+      containerWidth: 390,
+      containerHeight: 804
+    });
+    expect(props.mode).toBe('container');
+    expect(props.containerHeight).toBe(804);
   });
 
   it('should resolve boundary element by responsive class', () => {
