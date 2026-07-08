@@ -8,7 +8,6 @@
 - **React Hooks**：`useIsMobile`、`useBreakpoint`、`useMediaQuery`、`usePopupContainer`、`useScrollElement`
 - **上下文 Provider**：`ResponsiveProvider` 支持视口模式与容器模式（设备预览框）
 - **DOM 工具**：`findScrollParent`、`resolveBoundaryElement`、`resolveScrollElement`
-- **生态集成**：`ExampleDriverResponsiveProvider` 对接 `@kne/example-driver` 与 `modules-dev`
 
 ### 使用场景
 
