@@ -184,6 +184,7 @@ const sheet = useMobilePopupMount({ cover: 'viewport' });
 | `fixedModeClass` | `string \| null` | `kne-is-boundary` / `kne-is-viewport` / 桌面 `null` |
 | `getMountNode` | `(trigger?) => HTMLElement \| null` | portal 挂载节点 |
 | `getPopupContainer` | `(trigger?) => HTMLElement` | 可直接给 Antd |
+| `resolveMount` | `(trigger?) => { isMobile, fixedModeClass, mountNode, ... }` | 命令式打开时按触发点同步解析 |
 | `anchorRef` | `(node) => void` | 挂到触发器上，便于解析挂载上下文 |
 
 行为摘要：

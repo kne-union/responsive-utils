@@ -23,6 +23,12 @@ import { EXAMPLE_PHONE_MOUNT_SELECTORS, MOBILE_POPUP_COVER } from '../tokens/mob
  *   fixedModeClass: 'kne-is-boundary' | 'kne-is-viewport' | null,
  *   getMountNode: (triggerNode?: HTMLElement) => HTMLElement | null,
  *   getPopupContainer: (triggerNode?: HTMLElement) => HTMLElement,
+ *   resolveMount: (triggerNode?: HTMLElement) => {
+ *     isMobile: boolean,
+ *     useBoundaryMount: boolean,
+ *     fixedModeClass: 'kne-is-boundary' | 'kne-is-viewport' | null,
+ *     mountNode: HTMLElement | null
+ *   },
  *   anchorRef: (node: Element | null) => void,
  * }}
  */
@@ -105,15 +111,29 @@ const useMobilePopupMount = (options = {}) => {
     [resolvePlan]
   );
 
+  const resolveMount = useCallback(
+    triggerNode => {
+      const plan = resolvePlan(triggerNode);
+      return {
+        isMobile: plan.isMobile,
+        useBoundaryMount: plan.useBoundaryMount,
+        fixedModeClass: plan.fixedModeClass,
+        mountNode: plan.mountNode
+      };
+    },
+    [resolvePlan]
+  );
+
   return useMemo(
     () => ({
       isMobile,
       fixedModeClass,
       getMountNode,
       getPopupContainer,
+      resolveMount,
       anchorRef
     }),
-    [anchorRef, fixedModeClass, getMountNode, getPopupContainer, isMobile]
+    [anchorRef, fixedModeClass, getMountNode, getPopupContainer, isMobile, resolveMount]
   );
 };
 
