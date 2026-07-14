@@ -1,3 +1,18 @@
+### 怎么选 API
+
+| 你想做的事 | 用这个 |
+|-----------|--------|
+| 判断是不是移动端 | `useIsMobile` |
+| 按 xs~xxl 改布局 | `useBreakpoint` |
+| 任意 media query | `useMediaQuery` |
+| antd Select / DatePicker 不被裁剪 | `usePopupContainer` + `RESPONSIVE_BOUNDARY_CLASS` |
+| 拿到主内容滚动根 | `useScrollElement` + `RESPONSIVE_SCROLL_CLASS` |
+| 移动端 Modal / 半屏挂载 | `useMobilePopupMount({ cover })` |
+| 按局部容器宽度判定 | `ResponsiveProvider mode="container"` |
+| 样式断点 | SCSS `@use '~@kne/responsive-utils/scss' as resp` |
+
+完整用法见各 Demo；下面是参数与返回值明细。
+
 ### 断点 Token
 
 统一断点常量，与 SCSS mixin 同源。
@@ -15,12 +30,12 @@
 
 容器查询使用统一名称 `kne-responsive`（`$responsive-container-name`），业务方无需硬编码。
 
-**宿主元素**（如 example-driver 的 `.example-driver-preview-content`）：
+**宿主元素**（需要容器查询的根节点）：
 
 ```scss
 @use '@kne/responsive-utils/scss' as resp;
 
-.preview-host {
+.page-host {
   @include resp.responsive-container;
 }
 ```
@@ -133,11 +148,61 @@ const css = `
 |--------|------|------|
 | `getScrollElement` | `() => HTMLElement` | 滚动参照元素 getter |
 
+### 移动端弹层挂载（推荐）
+
+业务只关心「罩住哪」：选 `cover` 即可，挂载节点与定位类名由库根据 Provider 模式自动决定。
+
+#### 常量
+
+| 名称 | 值 | 描述 |
+|------|-----|------|
+| `MOBILE_POPUP_MODE.boundary` | `kne-is-boundary` | 相对 boundary `absolute`（组件自行写 CSS） |
+| `MOBILE_POPUP_MODE.viewport` | `kne-is-viewport` | 相对视口 `fixed` |
+| `MOBILE_POPUP_COVER.boundary` | `boundary` | 罩住 Provider boundary（**默认**，Modal） |
+| `MOBILE_POPUP_COVER.viewport` | `viewport` | 罩住当前移动可视区域（半屏 Select） |
+
+#### `useMobilePopupMount`
+
+```jsx
+import { useMobilePopupMount } from '@kne/responsive-utils';
+
+// Modal：默认挂 boundary
+const { isMobile, getPopupContainer, fixedModeClass, anchorRef } = useMobilePopupMount();
+
+// 底部半屏
+const sheet = useMobilePopupMount({ cover: 'viewport' });
+```
+
+| 参数 | 类型 | 默认 | 描述 |
+|------|------|------|------|
+| `cover` | `'boundary' \| 'viewport'` | `'boundary'` | 弹层罩住范围 |
+| `getPopupContainer` | `(trigger?) => HTMLElement \| null` | - | 调用方覆盖挂载节点 |
+
+| 返回值 | 类型 | 描述 |
+|--------|------|------|
+| `isMobile` | `boolean` | 是否移动端 UI |
+| `fixedModeClass` | `string \| null` | `kne-is-boundary` / `kne-is-viewport` / 桌面 `null` |
+| `getMountNode` | `(trigger?) => HTMLElement \| null` | portal 挂载节点 |
+| `getPopupContainer` | `(trigger?) => HTMLElement` | 可直接给 Antd |
+| `anchorRef` | `(node) => void` | 挂到触发器上，便于解析挂载上下文 |
+
+行为摘要：
+
+| `cover` | `mode=container`（或嵌套 boundary） | `mode=viewport` 且移动端 |
+|---------|--------------------------------------|---------------------------|
+| `boundary` | boundary + `kne-is-boundary` | boundary + `kne-is-boundary` |
+| `viewport` | boundary + `kne-is-boundary` | `body` + `kne-is-viewport` |
+
+另有 `useMobileFixedMode`、`resolveMobilePopupContainer` 等供高级/测试场景。
+
 ### DOM 工具
 
 | 函数 | 参数 | 返回值 | 描述 |
 |------|------|--------|------|
 | `findScrollParent` | `(element: HTMLElement)` | `HTMLElement \| null` | 向上查找最近可滚动祖先 |
+| `findResponsiveBoundary` | `(anchor?)` | `HTMLElement \| null` | 查找 boundary |
+| `findResponsiveScroll` | `(anchor?)` | `HTMLElement \| null` | 查找 scroll 容器 |
+| `resolveMobilePopupContainer` | `(options)` | `HTMLElement \| null` | 纯函数挂载策略 |
 | `resolveBoundaryElement` | `(boundaryRef?)` | `HTMLElement` | 解析边界元素，默认 `document.body` |
 | `resolveScrollElement` | `(scrollRef?, anchor?)` | `HTMLElement` | 解析滚动元素，默认文档滚动根 |
 | `getDefaultScrollElement` | - | `HTMLElement` | 默认滚动根 |
