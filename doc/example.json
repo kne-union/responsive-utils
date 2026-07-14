@@ -3,7 +3,7 @@
   "list": [
     {
       "title": "快速入门",
-      "description": "断点 token 与核心 Hooks 一览，展示视口模式下的移动端判定与断点状态",
+      "description": "推荐最小接入：目标类名 + ResponsiveProvider + useIsMobile + usePopupContainer",
       "code": "./base.js",
       "scope": [
         {
@@ -19,7 +19,7 @@
     },
     {
       "title": "ResponsiveProvider",
-      "description": "视口模式与容器模式对比，演示 boundaryRef / scrollRef 自定义弹窗边界与滚动容器",
+      "description": "viewport / container 模式、boundaryRef / scrollRef，以及与目标类名的配合",
       "code": "./responsive-provider.js",
       "scope": [
         {
@@ -34,8 +34,24 @@
       ]
     },
     {
+      "title": "目标类名",
+      "description": "RESPONSIVE_CONTAINER / BOUNDARY / SCROLL 三类约定，以及 findResponsive* 解析",
+      "code": "./target-classes.js",
+      "scope": [
+        {
+          "name": "_ResponsiveUtils",
+          "packageName": "@kne/current-lib_responsive-utils",
+          "importStatement": "import * as _ResponsiveUtils from \"@kne/responsive-utils\""
+        },
+        {
+          "name": "antd",
+          "packageName": "antd"
+        }
+      ]
+    },
+    {
       "title": "useIsMobile",
-      "description": "监听视口或容器宽度，驱动布局切换与条件渲染",
+      "description": "按 768px 切换布局：侧栏、订单列表卡片化、容器宽度模拟",
       "code": "./use-is-mobile.js",
       "scope": [
         {
@@ -51,7 +67,7 @@
     },
     {
       "title": "useBreakpoint",
-      "description": "返回 xs~xxl 各断点命中状态，用于栅格、侧栏、表格列显隐",
+      "description": "xs~xxl 命中状态驱动表格列、侧栏宽度与栅格",
       "code": "./use-breakpoint.js",
       "scope": [
         {
@@ -67,7 +83,7 @@
     },
     {
       "title": "useMediaQuery",
-      "description": "订阅任意 media query，支持容器模式下的 max-width 映射",
+      "description": "订阅任意 media query；container 下 max-width 映射到 getIsMobile",
       "code": "./use-media-query.js",
       "scope": [
         {
@@ -83,7 +99,7 @@
     },
     {
       "title": "usePopupContainer",
-      "description": "为 antd 浮层组件提供 getPopupContainer，避免 overflow 裁剪",
+      "description": "对比 overflow:hidden 下未挂载 / 已挂载 antd 浮层",
       "code": "./use-popup-container.js",
       "scope": [
         {
@@ -99,7 +115,7 @@
     },
     {
       "title": "useScrollElement",
-      "description": "获取滚动参照元素，用于锚点定位与滚动监听",
+      "description": "主内容区滚动监控、回顶与锚点跳转",
       "code": "./use-scroll-element.js",
       "scope": [
         {
@@ -114,8 +130,28 @@
       ]
     },
     {
+      "title": "useMobilePopupMount",
+      "description": "cover=boundary / viewport：对照 container 与 viewport 两种 Provider 模式下的挂载结果",
+      "code": "./use-mobile-popup-mount.js",
+      "scope": [
+        {
+          "name": "_ResponsiveUtils",
+          "packageName": "@kne/current-lib_responsive-utils",
+          "importStatement": "import * as _ResponsiveUtils from \"@kne/responsive-utils\""
+        },
+        {
+          "name": "antd",
+          "packageName": "antd"
+        },
+        {
+          "name": "ReactDOM",
+          "packageName": "react-dom"
+        }
+      ]
+    },
+    {
       "title": "DOM 工具",
-      "description": "findScrollParent、resolveBoundaryElement、resolveScrollElement 等底层解析",
+      "description": "findScrollParent / findResponsive* / resolve* 等底层解析（优先用 Hooks）",
       "code": "./dom-utils.js",
       "scope": [
         {

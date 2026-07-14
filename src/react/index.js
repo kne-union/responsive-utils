@@ -6,3 +6,5 @@ export { default as useIsMobile } from './useIsMobile';
 export { default as useBreakpoint } from './useBreakpoint';
 export { default as usePopupContainer } from './usePopupContainer';
 export { default as useScrollElement } from './useScrollElement';
+export { default as useMobileFixedMode } from './useMobileFixedMode';
+export { default as useMobilePopupMount } from './useMobilePopupMount';
