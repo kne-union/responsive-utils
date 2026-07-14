@@ -4,7 +4,7 @@ import useResponsiveContext from './useResponsiveContext';
 import usePopupContainer from './usePopupContainer';
 import findExamplePhoneMountNode from '../dom/findExamplePhoneMountNode';
 import { resolveMobilePopupContainer, resolveMobilePopupModeClass, resolveUseBoundaryMount } from '../dom/resolveMobilePopupContainer';
-import { EXAMPLE_PHONE_MOUNT_SELECTORS, MOBILE_POPUP_COVER } from '../tokens/mobilePopup';
+import { EXAMPLE_PHONE_MOUNT_SELECTORS, MOBILE_POPUP_COVER } from '../tokens';
 
 /**
  * 移动端弹层挂载一站式 hook。
