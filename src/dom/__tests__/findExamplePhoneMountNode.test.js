@@ -27,6 +27,32 @@ describe('findExamplePhoneMountNode', () => {
     document.body.removeChild(boundary);
   });
 
+  it('should ignore desktop-width boundary (e.g. system-layout root on PC)', () => {
+    const boundary = document.createElement('div');
+    boundary.className = RESPONSIVE_BOUNDARY_CLASS;
+    Object.defineProperty(boundary, 'clientWidth', { value: 1280, configurable: true });
+    const child = document.createElement('span');
+    boundary.appendChild(child);
+    document.body.appendChild(boundary);
+
+    expect(findExamplePhoneMountNode(child)).toBe(null);
+
+    document.body.removeChild(boundary);
+  });
+
+  it('should find phone-width boundary', () => {
+    const boundary = document.createElement('div');
+    boundary.className = RESPONSIVE_BOUNDARY_CLASS;
+    Object.defineProperty(boundary, 'clientWidth', { value: 390, configurable: true });
+    const child = document.createElement('span');
+    boundary.appendChild(child);
+    document.body.appendChild(boundary);
+
+    expect(findExamplePhoneMountNode(child)).toBe(boundary);
+
+    document.body.removeChild(boundary);
+  });
+
   it('should return null when outside example frame', () => {
     const orphan = document.createElement('div');
     document.body.appendChild(orphan);
