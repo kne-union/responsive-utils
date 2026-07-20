@@ -2,9 +2,9 @@
 
 @mixin viewport-vars {
   --kne-viewport-width: 100vw;
-  --kne-viewport-height: 100vh;
+  --kne-viewport-height: 100dvh;
   --kne-viewport-inline-size: 100vw;
-  --kne-viewport-block-size: 100vh;
+  --kne-viewport-block-size: 100dvh;
 }
 
 :root {
