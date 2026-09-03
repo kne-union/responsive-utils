@@ -1,14 +1,13 @@
 import { useMemo } from 'react';
 import useIsMobile from './useIsMobile';
 import useResponsiveContext from './useResponsiveContext';
-import { resolveMobilePopupModeClass, resolveUseBoundaryMount } from '../dom/resolveMobilePopupContainer';
+import { resolveMobilePopupModeClass, resolveUseBoundaryMount } from '../dom/resolvePopupContainer';
 import { MOBILE_POPUP_COVER } from '../tokens/mobilePopup';
 
 /**
- * 移动端弹层定位模式（内部会用到；业务优先用 useMobilePopupMount）
+ * @internal 仅定位 class；弹层挂载请用 `usePopupMount`。
  *
  * @param {{ isMobile?: boolean, cover?: 'boundary' | 'viewport' }} [options]
- *        isMobile 可传入已合并后的值；不传则用 useIsMobile()
  */
 const useMobileFixedMode = (options = {}) => {
   const { cover = MOBILE_POPUP_COVER.boundary, isMobile: isMobileOption, inExamplePhoneFrame = false } = options;
