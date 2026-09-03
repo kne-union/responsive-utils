@@ -1,12 +1,12 @@
 import { MOBILE_POPUP_COVER, MOBILE_POPUP_MODE } from '../../tokens/mobilePopup';
-import { resolveMobilePopupContainer, resolveMobilePopupModeClass, resolveUseBoundaryMount } from '../resolveMobilePopupContainer';
+import { resolvePopupContainer, resolveMobilePopupContainer, resolveMobilePopupModeClass, resolveUseBoundaryMount, hoistOutOfModalRoot } from '../resolvePopupContainer';
 
-describe('resolveMobilePopupContainer', () => {
+describe('resolvePopupContainer', () => {
   const boundary = { id: 'boundary' };
 
   it('should prefer custom getPopupContainer', () => {
     const custom = { id: 'custom' };
-    const result = resolveMobilePopupContainer({
+    const result = resolvePopupContainer({
       isMobile: true,
       useBoundaryMount: false,
       cover: MOBILE_POPUP_COVER.viewport,
@@ -17,7 +17,7 @@ describe('resolveMobilePopupContainer', () => {
   });
 
   it('boundary cover always uses boundary (including real mobile)', () => {
-    const result = resolveMobilePopupContainer({
+    const result = resolvePopupContainer({
       isMobile: true,
       useBoundaryMount: false,
       cover: MOBILE_POPUP_COVER.boundary,
@@ -27,7 +27,7 @@ describe('resolveMobilePopupContainer', () => {
   });
 
   it('viewport cover + boundary mount uses boundary (example / container)', () => {
-    const result = resolveMobilePopupContainer({
+    const result = resolvePopupContainer({
       isMobile: true,
       useBoundaryMount: true,
       cover: MOBILE_POPUP_COVER.viewport,
@@ -37,7 +37,7 @@ describe('resolveMobilePopupContainer', () => {
   });
 
   it('viewport cover + real mobile uses document.body', () => {
-    const result = resolveMobilePopupContainer({
+    const result = resolvePopupContainer({
       isMobile: true,
       useBoundaryMount: false,
       cover: MOBILE_POPUP_COVER.viewport,
@@ -47,13 +47,69 @@ describe('resolveMobilePopupContainer', () => {
   });
 
   it('desktop uses boundary', () => {
-    const result = resolveMobilePopupContainer({
+    const result = resolvePopupContainer({
       isMobile: false,
       useBoundaryMount: false,
       cover: MOBILE_POPUP_COVER.boundary,
       getBoundaryElement: () => boundary
     });
     expect(result).toBe(boundary);
+  });
+
+  it('mounts beside ant-modal-root when trigger is inside modal', () => {
+    const host = document.createElement('div');
+    const modalRoot = document.createElement('div');
+    modalRoot.className = 'ant-modal-root';
+    const trigger = document.createElement('button');
+    host.appendChild(modalRoot);
+    modalRoot.appendChild(trigger);
+    document.body.appendChild(host);
+
+    const result = resolvePopupContainer({
+      triggerNode: trigger,
+      getBoundaryElement: () => boundary
+    });
+    expect(result).toBe(host);
+
+    document.body.removeChild(host);
+  });
+
+  it('escapeModal=false keeps boundary even inside modal', () => {
+    const host = document.createElement('div');
+    const modalRoot = document.createElement('div');
+    modalRoot.className = 'ant-modal-root';
+    const trigger = document.createElement('button');
+    host.appendChild(modalRoot);
+    modalRoot.appendChild(trigger);
+    document.body.appendChild(host);
+
+    const result = resolvePopupContainer({
+      triggerNode: trigger,
+      escapeModal: false,
+      getBoundaryElement: () => boundary
+    });
+    expect(result).toBe(boundary);
+
+    document.body.removeChild(host);
+  });
+
+  it('resolveMobilePopupContainer is alias of resolvePopupContainer', () => {
+    expect(resolveMobilePopupContainer).toBe(resolvePopupContainer);
+  });
+});
+
+describe('hoistOutOfModalRoot', () => {
+  it('returns modal-root parent or null', () => {
+    expect(hoistOutOfModalRoot(null)).toBe(null);
+    expect(hoistOutOfModalRoot(document.createElement('div'))).toBe(null);
+
+    const host = document.createElement('div');
+    const modalRoot = document.createElement('div');
+    modalRoot.className = 'ant-modal-root';
+    const child = document.createElement('span');
+    host.appendChild(modalRoot);
+    modalRoot.appendChild(child);
+    expect(hoistOutOfModalRoot(child)).toBe(host);
   });
 });
 
