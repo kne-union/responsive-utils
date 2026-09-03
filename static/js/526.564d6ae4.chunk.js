@@ -1,0 +1,2 @@
+"use strict";(globalThis.webpackChunk_responsive_utils_0_1_16||=[]).push([[526],{35526(s,e,i){i.r(e);const o={ResponsiveUtils:i(2575).A};i.d(e,["default",0,o,"manifest",0,{name:"responsive-utils",version:"0.1.16","open-version":!0,"public-url":"/responsive-utils",modules:[{name:"responsive-utils",baseDir:"/home/runner/work/responsive-utils/responsive-utils",description:"Unified responsive breakpoints, hooks, popup boundary and scroll context for KNE projects.",packageName:"@kne/responsive-utils"}]}])}}]);
+//# sourceMappingURL=526.564d6ae4.chunk.js.map
